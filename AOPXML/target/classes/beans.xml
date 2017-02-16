@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="musician" class="com.dekhtiarenko.Musician">
+        <property name="instruments">
+            <list>
+                <ref bean="guitar"/>
+                <ref bean="ukulele"/>
+                <ref bean="piano"/>
+                <ref bean="violin"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="announcer" class="com.dekhtiarenko.Announcer"/>
+    <bean id="guitar" class="com.dekhtiarenko.Guitar" />
+    <bean id="piano" class="com.dekhtiarenko.Piano" />
+    <bean id="ukulele" class="com.dekhtiarenko.Ukulele" />
+    <bean id="violin" class="com.dekhtiarenko.Violin" />
+
+
+    <aop:config>
+        <aop:aspect ref="announcer">
+            <aop:pointcut
+                    expression="execution(* com.dekhtiarenko.Musician.play())"
+                    id="play"/>
+
+            <aop:before
+                    pointcut-ref="play"
+                    method="announceMusician"/>
+
+            <aop:after
+                    pointcut-ref="play"
+                    method="sayBye"/>
+            <aop:around
+                    pointcut-ref="play"
+                    method="systemInfo"/>
+        </aop:aspect>
+        <aop:aspect ref="announcer">
+            <aop:pointcut
+                    expression="(execution(* com.dekhtiarenko.Musician.playOnTheInstrument()) )"
+                    id="playOnTheInstrument"
+            />
+            <aop:before
+                    pointcut-ref="playOnTheInstrument"
+                    method="announceInstrument"
+                    
+            />
+        </aop:aspect>
+    </aop:config>
+
+</beans>
