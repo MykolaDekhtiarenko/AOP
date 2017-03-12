@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="JPA@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="JPA">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="Campaign"/>
+    <schema id="4" parent="1" name="DatabaseTest"/>
+    <schema id="5" parent="1" name="information_schema"/>
+    <schema id="6" parent="1" name="mdbUniversity"/>
+    <schema id="7" parent="1" name="mydb"/>
+    <schema id="8" parent="1" name="mysql"/>
+    <schema id="9" parent="1" name="performance_schema"/>
+    <schema id="10" parent="1" name="sys"/>
+    <schema id="11" parent="1" name="teaspo"/>
+    <schema id="12" parent="1" name="testJDBC"/>
+    <schema id="13" parent="1" name="university"/>
+    <table id="14" parent="2" name="Disciplines"/>
+    <table id="15" parent="2" name="Lectures"/>
+    <table id="16" parent="2" name="Student"/>
+    <table id="17" parent="2" name="Student_Discipline"/>
+    <table id="18" parent="2" name="Teachers"/>
+    <table id="19" parent="2" name="Users"/>
+    <column id="20" parent="14" name="Id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="21" parent="14" name="name">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="22" parent="14" name="credits">
+      <Position>3</Position>
+      <DataType>double|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="14" name="owner">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="24" parent="14" name="owner_idx">
+      <ColNames>owner</ColNames>
+    </index>
+    <key id="25" parent="14" name="PRIMARY">
+      <ColNames>Id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="26" parent="14" name="owner">
+      <ColNames>owner</ColNames>
+      <RefSchemaName>JPA</RefSchemaName>
+      <RefTableName>Teachers</RefTableName>
+      <RefColNames>Id</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <column id="27" parent="15" name="Id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="28" parent="15" name="name">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="29" parent="15" name="credits">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="30" parent="15" name="user">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="31" parent="15" name="user_idx">
+      <ColNames>user</ColNames>
+    </index>
+    <key id="32" parent="15" name="PRIMARY">
+      <ColNames>Id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="33" parent="15" name="user">
+      <ColNames>user</ColNames>
+      <RefSchemaName>JPA</RefSchemaName>
+      <RefTableName>Users</RefTableName>
+      <RefColNames>Id</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <trigger id="34" parent="15" name="Lectures_BEFORE_INSERT">
+      <Turn>before-row</Turn>
+      <Events>I</Events>
+    </trigger>
+    <column id="35" parent="16" name="Id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="36" parent="16" name="pib">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="37" parent="16" name="course">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="38" parent="16" name="PRIMARY">
+      <ColNames>Id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="39" parent="17" name="Student_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="17" name="Discipline_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="17" name="Id">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <index id="42" parent="17" name="discipline_idx">
+      <ColNames>Discipline_id</ColNames>
+    </index>
+    <index id="43" parent="17" name="student_idx">
+      <ColNames>Student_id</ColNames>
+    </index>
+    <key id="44" parent="17" name="PRIMARY">
+      <ColNames>Id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="45" parent="17" name="student">
+      <ColNames>Student_id</ColNames>
+      <RefSchemaName>JPA</RefSchemaName>
+      <RefTableName>Student</RefTableName>
+      <RefColNames>Id</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <foreign-key id="46" parent="17" name="discipline">
+      <ColNames>Discipline_id</ColNames>
+      <RefSchemaName>JPA</RefSchemaName>
+      <RefTableName>Disciplines</RefTableName>
+      <RefColNames>Id</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <column id="47" parent="18" name="Id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="48" parent="18" name="pib">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="49" parent="18" name="PRIMARY">
+      <ColNames>Id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="50" parent="19" name="Id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="51" parent="19" name="login">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="19" name="password">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="53" parent="19" name="mail">
+      <Position>4</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="54" parent="19" name="Userscol">
+      <Position>5</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <index id="55" parent="19" name="login_UNIQUE">
+      <ColNames>login</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="56" parent="19" name="PRIMARY">
+      <ColNames>Id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="57" parent="19" name="login_UNIQUE">
+      <ColNames>login</ColNames>
+      <UnderlyingIndexName>login_UNIQUE</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>
